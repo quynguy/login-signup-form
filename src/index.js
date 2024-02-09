@@ -69,7 +69,7 @@ app.post ("/login", async (req, res) => {
             req.send("Incorrect password. Please try again.");
         }
     }catch{
-        res.send("Unable to locate user. Please sign up.");
+        res.send("Incorrect Password or unable to locate user. Please sign up.");
     }
 
 });
