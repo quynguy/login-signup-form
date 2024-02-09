@@ -45,12 +45,35 @@ app.post("/signup", async (req, res) => {
         const hasedPassword = await bcrypt.hash(data.password, saltRounds);
 
         data.password = hasedPassword; // replace hash password with original password
-        
+
         const userdata = await collection.insertMany(data);
         console.log(userdata);
     }
-
 })
+
+// Login User
+app.post ("/login", async (req, res) => {
+    try {
+        const check = await collection.findOne({ name: req.body.username });
+        if(!check) {
+            res.send("Unable to locate user. Please sign up.");
+        }
+
+        // compare hash password from database to plain text 
+
+        const passwordMatch = await bcrypt.compare(req.body.password, check.password);
+        if (passwordMatch) {
+            res.render("home");
+
+        } else {
+            req.send("Incorrect password. Please try again.");
+        }
+    }catch{
+        res.send("Unable to locate user. Please sign up.");
+    }
+
+});
+
 
 const port = 3000;
 app.listen(port, () => {
