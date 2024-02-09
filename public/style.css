@@ -11,6 +11,9 @@ body {
     align-items: center;
 }
 
+/*login.ejs contents*/
+/*signup.ejs contents*/
+
 h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -59,3 +62,4 @@ h2 {
 p {
     margin-top: 15px;
 }
+
