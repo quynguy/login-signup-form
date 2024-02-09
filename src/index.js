@@ -7,6 +7,9 @@ const app = express();
 // view engine setup
 app.set('view engine', 'ejs');
 
+// static folder path
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
     res.render("login");
 });
